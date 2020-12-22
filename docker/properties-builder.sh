@@ -1,17 +1,16 @@
 #!/bin/bash
+#  if [ $SKIP_PROPERTIES_BUILDER = true ]; then
+#    echo "Skipping properties builder"
+#    exit 0
+#  fi
 
-# if [ "$SKIP_PROPERTIES_BUILDER" = true ]; then
-#   echo "Skipping properties builder"
-#   exit 0
-# fi
-
-# if we are linked, use that info
-# if [ "$MONGO_STARTED" != "" ]; then
-#   # links now use hostnames
-#   # todo: retrieve linked information such as hostname and port exposition
-#   export SPRING_DATA_MONGODB_HOST=mongodb
-#   export SPRING_DATA_MONGODB_PORT=27017
-# fi
+#  #if we are linked, use that info
+#  if [ "$MONGO_STARTED" != "" ]; then
+#    # links now use hostnames
+#    # todo: retrieve linked information such as hostname and port exposition
+#    export SPRING_DATA_MONGODB_HOST=mongodb
+#    export SPRING_DATA_MONGODB_PORT=27017
+#  fi
 
 echo "SPRING_DATA_MONGODB_HOST: $SPRING_DATA_MONGODB_HOST"
 echo "SPRING_DATA_MONGODB_PORT: $SPRING_DATA_MONGODB_PORT"
@@ -22,7 +21,7 @@ cat > $PROP_FILE <<EOF
 dbname=${SPRING_DATA_MONGODB_DATABASE:-dashboarddb}
 
 #Database HostName - default is localhost
-dbhost=${SPRING_DATA_MONGODB_HOST:-db}
+dbhost=${SPRING_DATA_MONGODB_HOST:-hygieia_db}
 
 #Database Port - default is 27017
 dbport=${SPRING_DATA_MONGODB_PORT:-27017}
@@ -93,5 +92,4 @@ auth.ldapManagerPassword=${AUTH_LDAP_MANAGER_PWD:-}
 # monitor.proxy.type=${MONITOR_PROXY_TYPE:-http}
 # monitor.proxy.host=${MONITOR_PROXY_HOST:-}
 # monitor.proxy.port=${MONITOR_PROXY_PORT:-80}
-
 EOF
